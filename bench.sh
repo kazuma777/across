@@ -39,6 +39,14 @@ speed_test_v4() {
     printf "${YELLOW}%-32s${GREEN}%-24s${RED}%-14s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}"
 }
 
+speed_test_v6() {
+    local output=$(LANG=C wget -6O /dev/null -T300 $1 2>&1)
+    local speedtest=$(printf '%s' "$output" | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')
+    local ipaddress=$(printf '%s' "$output" | awk -F'|' '/Connecting to .*\|([^\|]+)\|/ {print $2}')
+    local nodeName=$2
+    printf "${YELLOW}%-32s${GREEN}%-24s${RED}%-14s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}"
+}
+
 speed_v4() {
     speed_test_v4 'http://ga-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Atlanta'
 	speed_test_v4 'http://il-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Chicago'
@@ -61,18 +69,18 @@ speed_v4() {
     speed_test_v4 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
     speed_test_v4 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
     speed_test_v4 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
-	speed_test_v4 'http://speedtest-nyc1.digitalocean.com/100MB.bin' 'DigitalOcean NYC1'
-	speed_test_v4 'http://speedtest-nyc2.digitalocean.com/100MB.bin' 'DigitalOcean NYC2'
-	speed_test_v4 'http://speedtest-nyc3.digitalocean.com/100MB.bin' 'DigitalOcean NYC3'
-	speed_test_v4 'http://speedtest-ams2.digitalocean.com/100MB.bin' 'DigitalOcean AMS2'
-	speed_test_v4 'http://speedtest-ams3.digitalocean.com/100MB.bin' 'DigitalOcean AMS3'
-	speed_test_v4 'http://speedtest-sfo1.digitalocean.com/100MB.bin' 'DigitalOcean SFO1'
-	speed_test_v4 'http://speedtest-sfo2.digitalocean.com/100MB.bin' 'DigitalOcean SFO2'
-	speed_test_v4 'http://speedtest-sgp1.digitalocean.com/100MB.bin' 'DigitalOcean SGP1'
-	speed_test_v4 'http://speedtest-lon1.digitalocean.com/100MB.bin' 'DigitalOcean LON1'
-	speed_test_v4 'http://speedtest-fra1.digitalocean.com/100MB.bin' 'DigitalOcean FRA1'
-	speed_test_v4 'http://speedtest-tor1.digitalocean.com/100MB.bin' 'DigitalOcean TOR1'
-	speed_test_v4 'http://speedtest-blr1.digitalocean.com/100MB.bin' 'DigitalOcean BLR1'
+	speed_test_v4 'http://speedtest-nyc1.digitalocean.com/100mb.test' 'DigitalOcean NYC1'
+	speed_test_v4 'http://speedtest-nyc2.digitalocean.com/100mb.test' 'DigitalOcean NYC2'
+	speed_test_v4 'http://speedtest-nyc3.digitalocean.com/100mb.test' 'DigitalOcean NYC3'
+	speed_test_v4 'http://speedtest-ams2.digitalocean.com/100mb.test' 'DigitalOcean AMS2'
+	speed_test_v4 'http://speedtest-ams3.digitalocean.com/100mb.test' 'DigitalOcean AMS3'
+	speed_test_v4 'http://speedtest-sfo1.digitalocean.com/100mb.test' 'DigitalOcean SFO1'
+	speed_test_v4 'http://speedtest-sfo2.digitalocean.com/100mb.test' 'DigitalOcean SFO2'
+	speed_test_v4 'http://speedtest-sgp1.digitalocean.com/100mb.test' 'DigitalOcean SGP1'
+	speed_test_v4 'http://speedtest-lon1.digitalocean.com/100mb.test'DigitalOcean LON1'
+	speed_test_v4 'http://speedtest-fra1.digitalocean.com/100mb.test' 'DigitalOcean FRA1'
+	speed_test_v4 'http://speedtest-tor1.digitalocean.com/100mb.test' 'DigitalOcean TOR1'
+	speed_test_v4 'http://speedtest-blr1.digitalocean.com/100mb.test' 'DigitalOcean BLR1'
 	speed_test_v4 'http://speedtest-sgp.apac-tools.ovh/files/100Mio.dat' 'OVH Singapore'
 	speed_test_v4 'http://speedtest-syd.apac-tools.ovh/files/100Mio.dat' 'OVH Australla'
 	speed_test_v4 'http://speedtest-sgp.apac-tools.ovh/files/100Mio.dat' 'OVH Singapore'
