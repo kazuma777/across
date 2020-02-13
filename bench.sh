@@ -39,39 +39,52 @@ speed_test_v4() {
     printf "${YELLOW}%-32s${GREEN}%-24s${RED}%-14s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}"
 }
 
-speed_test_v6() {
-    local output=$(LANG=C wget -6O /dev/null -T300 $1 2>&1)
-    local speedtest=$(printf '%s' "$output" | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')
-    local ipaddress=$(printf '%s' "$output" | awk -F'|' '/Connecting to .*\|([^\|]+)\|/ {print $2}')
-    local nodeName=$2
-    printf "${YELLOW}%-32s${GREEN}%-24s${RED}%-14s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}"
-}
-
 speed_v4() {
-    speed_test_v4 'http://cachefly.cachefly.net/100mb.test' 'CacheFly'
+    speed_test_v4 'http://ga-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Atlanta'
+	speed_test_v4 'http://il-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Chicago'
+	speed_test_v4 'http://tx-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Dallas'
+	speed_test_v4 'http://lax-ca-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Los Angeles'
+	speed_test_v4 'http://fl-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Miami'
+	speed_test_v4 'http://wa-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Seattle'
+	speed_test_v4 'http://ga-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Valley'
+	speed_test_v4 'http://ams-nl-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Amsterdam'
+	speed_test_v4 'http://par-fr-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Paris'
+	speed_test_v4 'http://fra-de-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Frankfurt'
+	speed_test_v4 'http://lon-gb-ping.vultr.com/vultr.com.100MB.bin' 'Vultr London'
+	speed_test_v4 'http://syd-au-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Sydney'
+	speed_test_v4 'http://ga-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Tokyo'
+	speed_test_v4 'http://sgp-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Singapore'
+	speed_test_v4 'http://sjo-ca-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Silicon Valley'
+	speed_test_v4 'http://tor-ca-ping.vultr.com/vultr.com.100MB.bin' 'Vultr Toronto'
     speed_test_v4 'http://speedtest.tokyo2.linode.com/100MB-tokyo2.bin' 'Linode, Tokyo2, JP'
     speed_test_v4 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
     speed_test_v4 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
     speed_test_v4 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
     speed_test_v4 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
-    speed_test_v4 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
-    speed_test_v4 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
-    speed_test_v4 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
-    speed_test_v4 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
-    speed_test_v4 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
-}
-
-speed_v6() {
-    speed_test_v6 'http://speedtest.atlanta.linode.com/100MB-atlanta.bin' 'Linode, Atlanta, GA'
-    speed_test_v6 'http://speedtest.dallas.linode.com/100MB-dallas.bin' 'Linode, Dallas, TX'
-    speed_test_v6 'http://speedtest.newark.linode.com/100MB-newark.bin' 'Linode, Newark, NJ'
-    speed_test_v6 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
-    speed_test_v6 'http://speedtest.tokyo2.linode.com/100MB-tokyo2.bin' 'Linode, Tokyo2, JP'
-    speed_test_v6 'http://speedtest.sjc03.softlayer.com/downloads/test100.zip' 'Softlayer, San Jose, CA'
-    speed_test_v6 'http://speedtest.wdc01.softlayer.com/downloads/test100.zip' 'Softlayer, Washington, WA'
-    speed_test_v6 'http://speedtest.par01.softlayer.com/downloads/test100.zip' 'Softlayer, Paris, FR'
-    speed_test_v6 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
-    speed_test_v6 'http://speedtest.tok02.softlayer.com/downloads/test100.zip' 'Softlayer, Tokyo, JP'
+	speed_test_v4 'http://speedtest-nyc1.digitalocean.com/100MB.bin' 'DigitalOcean NYC1'
+	speed_test_v4 'http://speedtest-nyc2.digitalocean.com/100MB.bin' 'DigitalOcean NYC2'
+	speed_test_v4 'http://speedtest-nyc3.digitalocean.com/100MB.bin' 'DigitalOcean NYC3'
+	speed_test_v4 'http://speedtest-ams2.digitalocean.com/100MB.bin' 'DigitalOcean AMS2'
+	speed_test_v4 'http://speedtest-ams3.digitalocean.com/100MB.bin' 'DigitalOcean AMS3'
+	speed_test_v4 'http://speedtest-sfo1.digitalocean.com/100MB.bin' 'DigitalOcean SFO1'
+	speed_test_v4 'http://speedtest-sfo2.digitalocean.com/100MB.bin' 'DigitalOcean SFO2'
+	speed_test_v4 'http://speedtest-sgp1.digitalocean.com/100MB.bin' 'DigitalOcean SGP1'
+	speed_test_v4 'http://speedtest-lon1.digitalocean.com/100MB.bin' 'DigitalOcean LON1'
+	speed_test_v4 'http://speedtest-fra1.digitalocean.com/100MB.bin' 'DigitalOcean FRA1'
+	speed_test_v4 'http://speedtest-tor1.digitalocean.com/100MB.bin' 'DigitalOcean TOR1'
+	speed_test_v4 'http://speedtest-blr1.digitalocean.com/100MB.bin' 'DigitalOcean BLR1'
+	speed_test_v4 'http://speedtest-sgp.apac-tools.ovh/files/100Mio.dat' 'OVH Singapore'
+	speed_test_v4 'http://speedtest-syd.apac-tools.ovh/files/100Mio.dat' 'OVH Australla'
+	speed_test_v4 'http://speedtest-sgp.apac-tools.ovh/files/100Mio.dat' 'OVH Singapore'
+	speed_test_v4 'http://rbx.proof.ovh.net/files/100Mio.dat' 'OVH France'
+	speed_test_v4 'http://bhs.proof.ovh.net/files/100Mio.dat' 'OVH Canada'
+	speed_test_v4 'http://ping-ams1.online.net/100Mo.dat' 'Online By Scaleway Netherlands'
+	speed_test_v4 'http://ping.online.net/100Mo.dat' 'Online By Scaleway France'
+	speed_test_v4 'http://lg.exabytes.com/100MB.test' 'Exabytes Malaysia'
+	speed_test_v4 'https://lg.shinjiru.com.my/100MB.test' 'Shinjiru Malaysia'
+	speed_test_v4 'https://lg.gbnetwork.my/100MB.test' 'GB Network Malaysia'
+	speed_test_v4 'http://w78.gubo.org/LookingGlass/10MB.test' 'gigsgigscloud HongKong'
+	
 }
 
 io_test() {
