@@ -77,7 +77,7 @@ speed_v4() {
 	speed_test_v4 'http://speedtest-sfo1.digitalocean.com/100mb.test' 'DigitalOcean SFO1'
 	speed_test_v4 'http://speedtest-sfo2.digitalocean.com/100mb.test' 'DigitalOcean SFO2'
 	speed_test_v4 'http://speedtest-sgp1.digitalocean.com/100mb.test' 'DigitalOcean SGP1'
-	speed_test_v4 'http://speedtest-lon1.digitalocean.com/100mb.test'DigitalOcean LON1'
+	speed_test_v4 'http://speedtest-lon1.digitalocean.com/100mb.test' 'DigitalOcean LON1'
 	speed_test_v4 'http://speedtest-fra1.digitalocean.com/100mb.test' 'DigitalOcean FRA1'
 	speed_test_v4 'http://speedtest-tor1.digitalocean.com/100mb.test' 'DigitalOcean TOR1'
 	speed_test_v4 'http://speedtest-blr1.digitalocean.com/100mb.test' 'DigitalOcean BLR1'
